@@ -1,2 +1,2 @@
-# ocm-viewer
-The unofficial OnChainMonkey Mobile App to view your OCMs
+# OCM Viewer
+## The unofficial OnChainMonkey Mobile App to view your OCMs
