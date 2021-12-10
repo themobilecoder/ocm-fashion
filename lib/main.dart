@@ -10,20 +10,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'OCM Viewer',
+      title: 'OCM Flex',
       theme: FlexThemeData.light(
-        scheme: FlexScheme.ebonyClay,
+        scheme: FlexScheme.amber,
         lightIsWhite: false,
       ),
       darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.ebonyClay,
+        scheme: FlexScheme.amber,
         darkIsTrueBlack: false,
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
