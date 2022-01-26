@@ -5,7 +5,7 @@ import 'package:ocm_viewer/screens/edit_screen.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  final String ocmAssetName = "assets/ocms/0/";
+  final String ocmAssetName = "assets/ocms/";
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200,
           ),
-          itemCount: 20,
+          itemCount: 10000,
           itemBuilder: (context, index) {
             final ocmNumber = index + 1;
             return GestureDetector(
