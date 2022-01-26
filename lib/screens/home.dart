@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ocm_viewer/screens/edit_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  final String OCM_ASSET_NAME = "assets/ocms/0/";
+  final String ocmAssetName = "assets/ocms/0/";
 
   @override
   Widget build(BuildContext context) {
@@ -12,32 +13,30 @@ class HomePage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("OCM Flex"),
+          title: const Text("OCM Sunnies"),
           centerTitle: true,
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                text: "Mine",
-              ),
-              Tab(
-                text: "All",
-              )
-            ],
-          ),
         ),
-        body: TabBarView(
-          children: [
-            GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-              ),
-              itemCount: 1000,
-              itemBuilder: (context, index) {
-                return SvgPicture.asset("$OCM_ASSET_NAME${index + 1}.svg");
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+          ),
+          itemCount: 20,
+          itemBuilder: (context, index) {
+            final ocmNumber = index + 1;
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditScreen(ocmNumber: ocmNumber)),
+                );
               },
-            ),
-            const Text("World"),
-          ],
+              child: SvgPicture.asset(
+                "$ocmAssetName$ocmNumber.svg",
+                currentColor: Colors.transparent,
+              ),
+            );
+          },
         ),
       ),
     );
