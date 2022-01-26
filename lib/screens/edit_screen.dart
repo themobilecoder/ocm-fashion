@@ -9,7 +9,7 @@ class EditScreen extends StatelessWidget {
   EditScreen({Key? key, required final this.ocmNumber}) : super(key: key);
 
   final double frameSize = 300;
-  final int ocmNumber;
+  final String ocmNumber;
 
   @override
   Widget build(BuildContext context) {

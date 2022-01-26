@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
 
-Future<Photos> loadImage(double frameSize, int ocmNumber) async {
+Future<Photos> loadImage(double frameSize, String ocmNumber) async {
   final directory = await rootBundle.loadString("assets/ocms/$ocmNumber.svg");
   final svgRoot = await svg.fromSvgString(directory, directory);
 
