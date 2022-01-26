@@ -18,22 +18,47 @@ class HomePage extends StatelessWidget {
         ),
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
+            maxCrossAxisExtent: 300,
           ),
           itemCount: 10000,
           itemBuilder: (context, index) {
             final ocmNumber = index + 1;
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditScreen(ocmNumber: ocmNumber)),
-                );
-              },
-              child: SvgPicture.asset(
-                "$ocmAssetName$ocmNumber.svg",
-                currentColor: Colors.transparent,
+            return Container(
+              color: Colors.amber[900],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4.0),
+                      child: Text(
+                        "OCM #$ocmNumber",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    EditScreen(ocmNumber: ocmNumber)),
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          "$ocmAssetName$ocmNumber.svg",
+                          key: Key(ocmNumber.toString()),
+                          currentColor: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },

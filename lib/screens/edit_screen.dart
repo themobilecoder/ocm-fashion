@@ -17,7 +17,7 @@ class EditScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        color: Colors.amber,
+        color: Colors.amber[900],
         child: Center(
           child: FutureBuilder<Photos>(
               future: ocmMonkey,
