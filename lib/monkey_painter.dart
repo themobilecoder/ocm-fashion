@@ -21,8 +21,7 @@ class MonkeyPainter extends CustomPainter {
   }
 
   void _drawSunglasses(Size size, Canvas canvas) {
-    final center = Offset((size.width / 3), size.height / 1.9);
-    canvas.drawImage(image.image, center, Paint());
+    canvas.drawImage(image.image, Offset.zero, Paint());
   }
 
   void _drawOcm(Canvas canvas, Size size) {

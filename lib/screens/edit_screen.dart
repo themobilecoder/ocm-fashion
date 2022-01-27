@@ -8,7 +8,7 @@ import '../photo_utils.dart';
 class EditScreen extends StatelessWidget {
   EditScreen({Key? key, required final this.ocmNumber}) : super(key: key);
 
-  final double frameSize = 300;
+  final double frameSize = 500;
   final String ocmNumber;
 
   @override
