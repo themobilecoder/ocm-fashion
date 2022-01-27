@@ -17,6 +17,19 @@ Future<Photos> loadImage(double frameSize, String ocmNumber) async {
   return Photos(resizedImage, svgRoot, data.buffer.asUint8List());
 }
 
+Future<DrawableRoot> loadSvg(String filepath) async {
+  final directory = await rootBundle.loadString(filepath);
+  return svg.fromSvgString(directory, directory);
+}
+
+Future<ui.Image> loadAccessories(String filepath) async {
+  final data = await rootBundle.load(filepath);
+  final fileBytes = data.buffer.asUint8List();
+  final codec = await ui.instantiateImageCodec(fileBytes);
+  final image = (await codec.getNextFrame()).image;
+  return image;
+}
+
 class Photos {
   Photos(this.image, this.ocm, this.imageList);
   final ui.Image image;
