@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("OCM Sunnies"),
+          title: const Text("OCM Fashion"),
           centerTitle: true,
         ),
         body: Column(
