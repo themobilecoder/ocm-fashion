@@ -21,9 +21,9 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreenState extends State<EditScreen> {
-  ScreenshotController screenshotController = ScreenshotController();
+  final ScreenshotController _screenshotController = ScreenshotController();
   final PageController _pageController = PageController();
-  final accessoriesString = [
+  final _accessoriesString = [
     '',
     'assets/sunglasses.png',
     'assets/aviator.png',
@@ -35,12 +35,7 @@ class _EditScreenState extends State<EditScreen> {
     'assets/moustache.png',
     'assets/pixel-sunnies.png',
   ];
-  int currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +50,7 @@ class _EditScreenState extends State<EditScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Screenshot(
-                controller: screenshotController,
+                controller: _screenshotController,
                 child: SizedBox(
                   height: widget.frameSize,
                   width: widget.frameSize,
@@ -70,18 +65,18 @@ class _EditScreenState extends State<EditScreen> {
                       Center(
                         child: PageView.builder(
                           controller: _pageController,
-                          itemCount: accessoriesString.length,
+                          itemCount: _accessoriesString.length,
                           onPageChanged: (page) {
                             setState(() {
-                              currentPage = page;
+                              _currentPage = page;
                             });
                           },
                           itemBuilder: (context, index) {
-                            if (accessoriesString[index].isEmpty) {
+                            if (_accessoriesString[index].isEmpty) {
                               return Container();
                             } else {
                               return Center(
-                                child: Image.asset(accessoriesString[index]),
+                                child: Image.asset(_accessoriesString[index]),
                               );
                             }
                           },
@@ -94,7 +89,7 @@ class _EditScreenState extends State<EditScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "${currentPage + 1} / ${accessoriesString.length}",
+                  "${_currentPage + 1} / ${_accessoriesString.length}",
                   style: const TextStyle(
                     color: Colors.white,
                   ),
@@ -112,8 +107,8 @@ class _EditScreenState extends State<EditScreen> {
                       child: IconButton(
                         iconSize: 50,
                         onPressed: () {
-                          if (currentPage > 0) {
-                            _pageController.animateToPage(currentPage - 1,
+                          if (_currentPage > 0) {
+                            _pageController.animateToPage(_currentPage - 1,
                                 duration: const Duration(milliseconds: 200),
                                 curve: Curves.easeIn);
                           }
@@ -155,8 +150,8 @@ class _EditScreenState extends State<EditScreen> {
                       child: IconButton(
                         iconSize: 50,
                         onPressed: () {
-                          if (currentPage < accessoriesString.length) {
-                            final newPage = currentPage + 1;
+                          if (_currentPage < _accessoriesString.length) {
+                            final newPage = _currentPage + 1;
                             _pageController.animateToPage(newPage,
                                 duration: const Duration(milliseconds: 200),
                                 curve: Curves.easeIn);
@@ -179,13 +174,13 @@ class _EditScreenState extends State<EditScreen> {
   }
 
   _openMonkeyAsImage() {
-    screenshotController.capture(pixelRatio: 4).then((value) {
+    _screenshotController.capture(pixelRatio: 4).then((value) {
       download_utils.openImage(value!, 'ocm_${widget.ocmNumber}');
     });
   }
 
   _saveMonkeyAsImage() {
-    screenshotController.capture(pixelRatio: 4).then((value) {
+    _screenshotController.capture(pixelRatio: 4).then((value) {
       download_utils.saveImage(value!, 'ocm_${widget.ocmNumber}');
     });
   }
