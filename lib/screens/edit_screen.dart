@@ -23,27 +23,40 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   final PageController _pageController = PageController();
+  final accessoriesString = [
+    '',
+    'assets/sunglasses.png',
+    'assets/aviator.png',
+    'assets/eyeglasses-isolated.png',
+    'assets/funky-sunnies.png',
+    'assets/heart-sunnies.png',
+    'assets/masquerade-1.png',
+    'assets/masquerade-2.png',
+    'assets/moustache.png',
+    'assets/pixel-sunnies.png',
+  ];
   int currentPage = 0;
+
+  final List<Image> accessories = [];
 
   @override
   void initState() {
+    for (var accessoryPath in accessoriesString) {
+      accessories.add(Image.asset(accessoryPath));
+    }
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    for (var accessory in accessories) {
+      precacheImage(accessory.image, context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final accessoriesString = [
-      '',
-      'assets/sunglasses.png',
-      'assets/aviator.png',
-      'assets/eyeglasses-isolated.png',
-      'assets/funky-sunnies.png',
-      'assets/heart-sunnies.png',
-      'assets/masquerade-1.png',
-      'assets/masquerade-2.png',
-      'assets/moustache.png',
-      'assets/pixel-sunnies.png',
-    ];
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

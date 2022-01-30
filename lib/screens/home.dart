@@ -103,6 +103,13 @@ class _HomePageState extends State<HomePage> {
                                   "$ocmAssetName$ocmNumber.svg",
                                   key: Key(ocmNumber.toString()),
                                   currentColor: Colors.transparent,
+                                  placeholderBuilder: (context) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white10,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ),
