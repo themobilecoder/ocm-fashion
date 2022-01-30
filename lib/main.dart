@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'OCM Flex',
+      title: 'OCM Fashion',
       theme: FlexThemeData.light(
         scheme: FlexScheme.deepPurple,
         lightIsWhite: false,
