@@ -44,7 +44,6 @@ class _EditScreenState extends State<EditScreen> {
       'assets/moustache.png',
       'assets/pixel-sunnies.png',
     ];
-    print(currentPage);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
