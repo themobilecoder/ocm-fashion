@@ -91,6 +91,15 @@ class _EditScreenState extends State<EditScreen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "${currentPage + 1} / ${accessoriesString.length}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 100,
                 width: widget.frameSize,
