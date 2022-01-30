@@ -34,13 +34,15 @@ class _EditScreenState extends State<EditScreen> {
   Widget build(BuildContext context) {
     final accessoriesString = [
       '',
-      'assets/aviator.png',
-      'assets/moustache.png',
-      'assets/party_mask.png',
       'assets/sunglasses.png',
-      'assets/masquerade.png',
-      'assets/heart_glasses.png',
-      'assets/wig1.png'
+      'assets/aviator.png',
+      'assets/eyeglasses-isolated.png',
+      'assets/funky-sunnies.png',
+      'assets/heart-sunnies.png',
+      'assets/masquerade-1.png',
+      'assets/masquerade-2.png',
+      'assets/moustache.png',
+      'assets/pixel-sunnies.png',
     ];
     print(currentPage);
     return Scaffold(
