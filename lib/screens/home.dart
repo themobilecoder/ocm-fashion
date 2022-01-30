@@ -33,13 +33,15 @@ class _HomePageState extends State<HomePage> {
             Container(
               color: Colors.amber[900],
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: _controller,
+                  cursorColor: Colors.white,
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.search),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                       onPressed: () => {
                         setState(() {
                           _controller.clear();

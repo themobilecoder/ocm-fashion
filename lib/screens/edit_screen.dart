@@ -99,43 +99,52 @@ class _EditScreenState extends State<EditScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      iconSize: 50,
-                      onPressed: () {
-                        if (currentPage > 0) {
-                          _pageController.animateToPage(currentPage - 1,
-                              duration: const Duration(milliseconds: 200),
-                              curve: Curves.easeIn);
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        color: Colors.white,
+                    Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        iconSize: 50,
+                        onPressed: () {
+                          if (currentPage > 0) {
+                            _pageController.animateToPage(currentPage - 1,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeIn);
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    IconButton(
-                      iconSize: 50,
-                      onPressed: () {
-                        _openMonkeyAsImage();
-                      },
-                      icon: const Icon(
-                        Icons.photo,
-                        color: Colors.white,
+                    Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        iconSize: 50,
+                        onPressed: () {
+                          _openMonkeyAsImage();
+                        },
+                        icon: const Icon(
+                          Icons.photo,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    IconButton(
-                      iconSize: 50,
-                      onPressed: () {
-                        if (currentPage < accessoriesString.length) {
-                          final newPage = currentPage + 1;
-                          _pageController.animateToPage(newPage,
-                              duration: const Duration(milliseconds: 200),
-                              curve: Curves.easeIn);
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: Colors.white,
+                    Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        iconSize: 50,
+                        onPressed: () {
+                          if (currentPage < accessoriesString.length) {
+                            final newPage = currentPage + 1;
+                            _pageController.animateToPage(newPage,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeIn);
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.chevron_right,
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],
