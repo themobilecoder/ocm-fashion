@@ -4,13 +4,15 @@ import 'dart:html' as html;
 
 import 'dart:typed_data';
 
-save(Uint8List value, String filename) async {
-  final blob = html.Blob([value]);
+openImage(Uint8List value, String filename) async {
+  final blob = html.Blob([value], 'image/png');
   final url = html.Url.createObjectUrlFromBlob(blob);
+
   final anchor = html.document.createElement('a') as html.AnchorElement
     ..href = url
     ..style.display = 'none'
-    ..download = "$filename.png";
+    ..target = "_blank";
+
   html.document.body?.children.add(anchor);
   anchor.click();
   html.document.body?.children.remove(anchor);

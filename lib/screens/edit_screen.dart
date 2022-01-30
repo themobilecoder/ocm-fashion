@@ -23,6 +23,8 @@ class EditScreen extends StatefulWidget {
 
 class _EditScreenState extends State<EditScreen> {
   ScreenshotController screenshotController = ScreenshotController();
+  final PageController _pageController = PageController();
+  int currentPage = 0;
 
   @override
   void initState() {
@@ -32,6 +34,7 @@ class _EditScreenState extends State<EditScreen> {
   @override
   Widget build(BuildContext context) {
     final accessoriesString = [
+      '',
       'assets/aviator.png',
       'assets/moustache.png',
       'assets/party_mask.png',
@@ -40,57 +43,113 @@ class _EditScreenState extends State<EditScreen> {
       'assets/heart_glasses.png',
       'assets/wig1.png'
     ];
-    final actions = (kIsWeb)
-        ? [
-            IconButton(
-              onPressed: _saveMonkeyAsImage,
-              icon: const Icon(Icons.save),
-            )
-          ]
-        : null;
+    print(currentPage);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: actions,
       ),
       body: Container(
         color: Colors.amber[900],
         child: Center(
-          child: Screenshot(
-            controller: screenshotController,
-            child: SizedBox(
-              height: widget.frameSize,
-              width: widget.frameSize,
-              child: Stack(
-                children: [
-                  Center(
-                    child: Center(
-                      child: SvgPicture.asset(
-                          'assets/ocms/${widget.ocmNumber}.svg'),
-                    ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Screenshot(
+                controller: screenshotController,
+                child: SizedBox(
+                  height: widget.frameSize,
+                  width: widget.frameSize,
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Center(
+                          child: SvgPicture.asset(
+                              'assets/ocms/${widget.ocmNumber}.svg'),
+                        ),
+                      ),
+                      Center(
+                        child: PageView.builder(
+                          controller: _pageController,
+                          itemCount: accessoriesString.length,
+                          onPageChanged: (page) {
+                            setState(() {
+                              currentPage = page;
+                            });
+                          },
+                          itemBuilder: (context, index) {
+                            if (accessoriesString[index].isEmpty) {
+                              return Container();
+                            } else {
+                              return Center(
+                                child: Image.asset(accessoriesString[index]),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  Center(
-                    child: PageView.builder(
-                      itemCount: accessoriesString.length,
-                      itemBuilder: (context, index) {
-                        return Center(
-                          child: Image.asset(accessoriesString[index]),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              SizedBox(
+                height: 100,
+                width: widget.frameSize,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {
+                        if (currentPage > 0) {
+                          _pageController.animateToPage(currentPage - 1,
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeIn);
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {
+                        _openMonkeyAsImage();
+                      },
+                      icon: const Icon(
+                        Icons.photo,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {
+                        if (currentPage < accessoriesString.length) {
+                          final newPage = currentPage + 1;
+                          _pageController.animateToPage(newPage,
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeIn);
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
     );
   }
 
-  _saveMonkeyAsImage() {
+  _openMonkeyAsImage() {
     screenshotController.capture(pixelRatio: 4).then((value) {
-      download_utils.save(value!, 'ocm_${widget.ocmNumber}');
+      download_utils.openImage(value!, 'ocm_${widget.ocmNumber}');
     });
   }
 }
