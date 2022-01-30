@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'OCM Flex',
       theme: FlexThemeData.light(
-        scheme: FlexScheme.amber,
+        scheme: FlexScheme.deepPurple,
         lightIsWhite: false,
       ),
       darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.amber,
+        scheme: FlexScheme.deepPurple,
         darkIsTrueBlack: false,
       ),
       home: const HomePage(),

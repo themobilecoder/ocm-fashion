@@ -49,7 +49,7 @@ class _EditScreenState extends State<EditScreen> {
         title: Text(widget.title),
       ),
       body: Container(
-        color: Colors.amber[900],
+        color: Colors.deepPurple[800],
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

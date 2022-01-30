@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           children: [
             Container(
-              color: Colors.amber[900],
+              color: Colors.deepPurple[800],
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: Container(
-                color: Colors.amber[900],
+                color: Colors.deepPurple[800],
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 300,
@@ -71,9 +71,9 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     final ocmNumber = filteredOcms[index];
                     return Container(
-                      color: Colors.amber[900],
+                      color: Colors.deepPurple[800],
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: [
                             Padding(
