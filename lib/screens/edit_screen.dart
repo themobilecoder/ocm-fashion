@@ -37,22 +37,9 @@ class _EditScreenState extends State<EditScreen> {
   ];
   int currentPage = 0;
 
-  final List<Image> accessories = [];
-
   @override
   void initState() {
-    for (var accessoryPath in accessoriesString) {
-      accessories.add(Image.asset(accessoryPath));
-    }
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    for (var accessory in accessories) {
-      precacheImage(accessory.image, context);
-    }
   }
 
   @override
