@@ -4,37 +4,38 @@ import 'dart:html' as html;
 
 import 'dart:typed_data';
 
-openImage(Uint8List value, String filename) async {
-  final blob = html.Blob([value], 'image/png');
-  final url = html.Url.createObjectUrlFromBlob(blob);
+void openImage(Uint8List value, String filename) async {
+  final urlBlob = _createObjectBlobUrlFromUint8List(value, filename);
 
   final anchor = html.document.createElement('a') as html.AnchorElement
-    ..href = url
+    ..href = urlBlob
     ..style.display = 'none'
     ..target = "_blank";
 
-  html.document.body?.children.add(anchor);
-  anchor.click();
-  html.document.body?.children.remove(anchor);
-
-  Future.delayed(const Duration(minutes: 1), () {
-    html.Url.revokeObjectUrl(url);
-  });
+  _executeActionOnAnchor(anchor, urlBlob);
 }
 
-saveImage(Uint8List value, String filename) async {
-  final blob = html.Blob([value], 'image/png');
-  final url = html.Url.createObjectUrlFromBlob(blob);
+void saveImage(Uint8List value, String filename) async {
+  final urlBlob = _createObjectBlobUrlFromUint8List(value, filename);
 
   final anchor = html.document.createElement('a') as html.AnchorElement
-    ..href = url
+    ..href = urlBlob
     ..style.display = 'none'
     ..download = "$filename.png";
 
+  _executeActionOnAnchor(anchor, urlBlob);
+}
+
+String _createObjectBlobUrlFromUint8List(Uint8List value, String filename) {
+  final blob = html.Blob([value], 'image/png');
+  return html.Url.createObjectUrlFromBlob(blob);
+}
+
+void _executeActionOnAnchor(html.AnchorElement anchor, String urlBlob) {
   html.document.body?.children.add(anchor);
   anchor.click();
   html.document.body?.children.remove(anchor);
   Future.delayed(const Duration(minutes: 1), () {
-    html.Url.revokeObjectUrl(url);
+    html.Url.revokeObjectUrl(urlBlob);
   });
 }
