@@ -16,7 +16,10 @@ openImage(Uint8List value, String filename) async {
   html.document.body?.children.add(anchor);
   anchor.click();
   html.document.body?.children.remove(anchor);
-  html.Url.revokeObjectUrl(url);
+
+  Future.delayed(const Duration(minutes: 1), () {
+    html.Url.revokeObjectUrl(url);
+  });
 }
 
 saveImage(Uint8List value, String filename) async {
@@ -31,5 +34,7 @@ saveImage(Uint8List value, String filename) async {
   html.document.body?.children.add(anchor);
   anchor.click();
   html.document.body?.children.remove(anchor);
-  html.Url.revokeObjectUrl(url);
+  Future.delayed(const Duration(minutes: 1), () {
+    html.Url.revokeObjectUrl(url);
+  });
 }

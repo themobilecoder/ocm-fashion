@@ -132,6 +132,19 @@ class _EditScreenState extends State<EditScreen> {
                           _openMonkeyAsImage();
                         },
                         icon: const Icon(
+                          Icons.photo,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        iconSize: 50,
+                        onPressed: () {
+                          _saveMonkeyAsImage();
+                        },
+                        icon: const Icon(
                           Icons.save,
                           color: Colors.white,
                         ),
@@ -166,6 +179,12 @@ class _EditScreenState extends State<EditScreen> {
   }
 
   _openMonkeyAsImage() {
+    screenshotController.capture(pixelRatio: 4).then((value) {
+      download_utils.openImage(value!, 'ocm_${widget.ocmNumber}');
+    });
+  }
+
+  _saveMonkeyAsImage() {
     screenshotController.capture(pixelRatio: 4).then((value) {
       download_utils.saveImage(value!, 'ocm_${widget.ocmNumber}');
     });
