@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ocm_viewer/screens/about_screen.dart';
 import 'package:ocm_viewer/screens/edit_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +28,16 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text("OCM Fashion"),
           centerTitle: true,
+          leading: IconButton(
+            color: Colors.white,
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutScreen()),
+              )
+            },
+            icon: const Icon(Icons.info_outline),
+          ),
         ),
         body: Column(
           children: [
